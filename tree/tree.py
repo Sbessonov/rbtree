@@ -77,45 +77,45 @@ class Node:
         if pivot.left is not None:
             pivot.left.parent = self
         pivot.left = self
-    #
-    # def insert_case1(self):
-    #     if self.parent == None:
-    #         self.color = 0
-    #     else:
-    #         self.insert_case2()
-    #
-    # def insert_case2(self):
-    #     if self.parent.color != 0:
-    #         self.insert_case3()
-    #
-    # def insert_case3(self):
-    #     u = self.uncle()
-    #     if u != None and u.color == 1:
-    #         self.parent.color, u.color = 0, 0
-    #         g = self.grandparent()
-    #         g.color = 1
-    #         g.insert_case1()
-    #     else:
-    #         self.insert_case4()
-    #
-    # def insert_case4(self):
-    #     g = self.grandparent()
-    #     n = self
-    #     if self == self.parent.right and self.parent == g.left:
-    #         self.parent.rotate_left()
-    #         n = self.left
-    #     elif self == self.parent.left and self.parent == g.right:
-    #         self.parent.rotate_right()
-    #         n = self.right
-    #     n.insert_case5()
-    #
-    # def insert_case5(self):
-    #     g = self.grandparent()
-    #     self.parent.color, g.color = 0, 1
-    #     if self == self.parent.left and self.parent == g.left:
-    #         g.rotate_right()
-    #     else:
-    #         g.rotate_left()
+
+    def insert_case1(self):
+        if self.parent == None:
+            self.color = 0
+        else:
+            self.insert_case2()
+
+    def insert_case2(self):
+        if self.parent.color != 0:
+            self.insert_case3()
+
+    def insert_case3(self):
+        u = self.uncle()
+        if u != None and u.color == 1:
+            self.parent.color, u.color = 0, 0
+            g = self.grandparent()
+            g.color = 1
+            g.insert_case1()
+        else:
+            self.insert_case4()
+
+    def insert_case4(self):
+        g = self.grandparent()
+        n = self
+        if self == self.parent.right and self.parent == g.left:
+            self.parent.rotate_left()
+            n = self.left
+        elif self == self.parent.left and self.parent == g.right:
+            self.parent.rotate_right()
+            n = self.right
+        n.insert_case5()
+
+    def insert_case5(self):
+        g = self.grandparent()
+        self.parent.color, g.color = 0, 1
+        if self == self.parent.left and self.parent == g.left:
+            g.rotate_right()
+        else:
+            g.rotate_left()
     #
     # def delete_case1(self):
     #     if self.parent != None:
