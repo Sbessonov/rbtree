@@ -116,67 +116,67 @@ class Node:
             g.rotate_right()
         else:
             g.rotate_left()
-    #
-    # def delete_case1(self):
-    #     if self.parent != None:
-    #         self.delete_case2()
-    #     else:
-    #         return True
-    #
-    # def delete_case2(self):
-    #     b = self.bro()
-    #     if b.color == 1:
-    #         self.parent.color = 1
-    #         b.color = 0
-    #         if self.parent.left == self:
-    #             self.parent.rotate_left()
-    #         else:
-    #             self.parent.rotate_right()
-    #     self.delete_case3()
-    #
-    # def delete_case3(self):
-    #     b = self.bro()
-    #     if self.parent.color == 0 and b.color == 0 and \
-    #             b.left.color == 0 and b.right.color == 0:
-    #         b.color = 1
-    #         self.parent.delete_case1()
-    #     else:
-    #         self.delete_case4()
-    #
-    # def delete_case4(self):
-    #     b = self.bro()
-    #     if self.parent.color == 1 and b.color == 0 and \
-    #             b.left.color == 0 and b.right.color == 0:
-    #         b.color = 1
-    #         self.parent.color = 0
-    #     else:
-    #         self.delete_case5()
-    #
-    # def delete_case5(self):
-    #     b = self.bro()
-    #     if b.color == 0:
-    #         if self == self.parent.left and \
-    #                 b.right.color == 0 and b.left.color == 1:
-    #             b.color = 1
-    #             b.left.color = 0
-    #             b.rotate_right()
-    #         elif self == self.parent.right and \
-    #                 b.left.color == 0 and b.right.color == 1:
-    #             b.color = 1
-    #             b.right.color = 0
-    #             b.rotate_left()
-    #     self.delete_case6()
-    #
-    # def delete_case6(self):
-    #     b = self.bro()
-    #     b.color = self.parent.color
-    #     self.parent.color = 0
-    #     if self == self.parent.left:
-    #         b.right.color = 0
-    #         self.parent.rotate_left()
-    #     else:
-    #         b.left.color = 0
-    #         self.parent.rotate_right()
+
+    def delete_case1(self):
+        if self.parent is not None:
+            self.delete_case2()
+        else:
+            return True
+
+    def delete_case2(self):
+        b = self.bro()
+        if b.color == 1:
+            self.parent.color = 1
+            b.color = 0
+            if self.parent.left == self:
+                self.parent.rotate_left()
+            else:
+                self.parent.rotate_right()
+        self.delete_case3()
+
+    def delete_case3(self):
+        b = self.bro()
+        if self.parent.color == 0 and b.color == 0 and \
+                b.left.color == 0 and b.right.color == 0:
+            b.color = 1
+            self.parent.delete_case1()
+        else:
+            self.delete_case4()
+
+    def delete_case4(self):
+        b = self.bro()
+        if self.parent.color == 1 and b.color == 0 and \
+                b.left.color == 0 and b.right.color == 0:
+            b.color = 1
+            self.parent.color = 0
+        else:
+            self.delete_case5()
+
+    def delete_case5(self):
+        b = self.bro()
+        if b.color == 0:
+            if self == self.parent.left and \
+                    b.right.color == 0 and b.left.color == 1:
+                b.color = 1
+                b.left.color = 0
+                b.rotate_right()
+            elif self == self.parent.right and \
+                    b.left.color == 0 and b.right.color == 1:
+                b.color = 1
+                b.right.color = 0
+                b.rotate_left()
+        self.delete_case6()
+
+    def delete_case6(self):
+        b = self.bro()
+        b.color = self.parent.color
+        self.parent.color = 0
+        if self == self.parent.left:
+            b.right.color = 0
+            self.parent.rotate_left()
+        else:
+            b.left.color = 0
+            self.parent.rotate_right()
     #
     # def find(self, key):
     #     if self.key == key:
