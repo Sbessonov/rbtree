@@ -1,6 +1,9 @@
 import unittest
 import tree
 import random
+# python -m unittest -v test.py
+# coverage run -m unittest test.py
+# coverage report -m
 
 
 def grow():
@@ -164,3 +167,7 @@ class TestRBTree(unittest.TestCase):
             t.insert(i)
         self.assertTrue(t.delete(3))
         self.assertTrue(t.delete(4))
+
+
+if __name__ == '__main__':
+    unittest.main()

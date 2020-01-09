@@ -235,3 +235,4 @@ class Node:
         if self.right.key is None:
             return False
         return self.right.delete(key)
+
