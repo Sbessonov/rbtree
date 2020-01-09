@@ -177,61 +177,61 @@ class Node:
         else:
             b.left.color = 0
             self.parent.rotate_right()
-    #
-    # def find(self, key):
-    #     if self.key == key:
-    #         return self
-    #     if self.key > key:
-    #         if self.left.key == None:
-    #             return None
-    #         return self.left.find(key)
-    #     if self.right.key == None:
-    #         return None
-    #     return self.right.find(key)
-    #
-    # def insert(self, key):
-    #     if self.key == key:
-    #         return False
-    #     if self.key > key:
-    #         if self.left.key == None:
-    #             self.left = Node(key, self)
-    #             self.left.color = 1
-    #             self.left.insert_case2()
-    #             return True
-    #         return self.left.insert(key)
-    #     if self.right.key == None:
-    #         self.right = Node(key, self)
-    #         self.right.color = 1
-    #         self.right.insert_case2()
-    #         return True
-    #     return self.right.insert(key)
-    #
-    # def delete_one_child(self):
-    #     child = self.right
-    #     if self.right.key == None:
-    #         child = self.left
-    #     self.reconnect(child)
-    #     if self.color == 0:
-    #         if child.color == 1:
-    #             child.color = 0
-    #         else:
-    #             if child.delete_case1():
-    #                 self.parent = child
-    #
-    # def delete(self, key):
-    #     if self.key == key:
-    #         ch = self
-    #         if self.left.key != None:
-    #             ch = self.left
-    #             while ch.right.key != None:
-    #                 ch = ch.right
-    #             self.key = ch.key
-    #         ch.delete_one_child()
-    #         return True
-    #     if self.key > key:
-    #         if self.left.key == None:
-    #             return False
-    #         return self.left.delete(key)
-    #     if self.right.key == None:
-    #         return False
-    #     return self.right.delete(key)
+
+    def find(self, key):
+        if self.key == key:
+            return self
+        if self.key > key:
+            if self.left.key == None:
+                return None
+            return self.left.find(key)
+        if self.right.key == None:
+            return None
+        return self.right.find(key)
+
+    def insert(self, key):
+        if self.key == key:
+            return False
+        if self.key > key:
+            if self.left.key == None:
+                self.left = Node(key, self)
+                self.left.color = 1
+                self.left.insert_case2()
+                return True
+            return self.left.insert(key)
+        if self.right.key == None:
+            self.right = Node(key, self)
+            self.right.color = 1
+            self.right.insert_case2()
+            return True
+        return self.right.insert(key)
+
+    def delete_one_child(self):
+        child = self.right
+        if self.right.key == None:
+            child = self.left
+        self.reconnect(child)
+        if self.color == 0:
+            if child.color == 1:
+                child.color = 0
+            else:
+                if child.delete_case1():
+                    self.parent = child
+
+    def delete(self, key):
+        if self.key == key:
+            ch = self
+            if self.left.key != None:
+                ch = self.left
+                while ch.right.key != None:
+                    ch = ch.right
+                self.key = ch.key
+            ch.delete_one_child()
+            return True
+        if self.key > key:
+            if self.left.key == None:
+                return False
+            return self.left.delete(key)
+        if self.right.key == None:
+            return False
+        return self.right.delete(key)
