@@ -87,3 +87,32 @@ class TestRBTree(unittest.TestCase):
             t.insert(i)
         for i in range(1, 11):
             self.assertTrue(t.find(i))
+
+    def test_delete_none(self):
+        t = tree.RBTree()
+        self.assertFalse(t.delete(2))
+
+    def test_delete_leaf(self):
+        t = tree.RBTree()
+        for i in range(10):
+            t.insert(i)
+        self.assertTrue(t.delete(9))
+        ct = grow()
+        ct.root.right.right.right.right = tree.Node(None, ct.root.right.right.right)
+        self.assertTrue(tree_compare(t.root, ct.root))
+
+    def test_delete_root(self):
+        t = tree.RBTree()
+        t.insert(1)
+        self.assertTrue(t.delete(1))
+        self.assertEqual(t.root, None)
+
+    def test_delete_not_exist_small(self):
+        t = tree.RBTree()
+        t.insert(1)
+        self.assertFalse(t.delete(-1))
+
+    def test_delete_not_exist_big(self):
+        t = tree.RBTree()
+        t.insert(1)
+        self.assertFalse(t.delete(2))

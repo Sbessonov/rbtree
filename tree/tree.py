@@ -60,23 +60,23 @@ class Node:
             else:
                 self.parent.right = other
 
-    # def rotate_right(self):
-    #     pivot = self.left
-    #     self.reconnect(pivot)
-    #     self.parent = pivot
-    #     self.left = pivot.right
-    #     if pivot.right != None:
-    #         pivot.right.parent = self
-    #     pivot.right = self
-    #
-    # def rotate_left(self):
-    #     pivot = self.right
-    #     self.reconnect(pivot)
-    #     self.parent = pivot
-    #     self.right = pivot.left
-    #     if pivot.left != None:
-    #         pivot.left.parent = self
-    #     pivot.left = self
+    def rotate_right(self):
+        pivot = self.left
+        self.reconnect(pivot)
+        self.parent = pivot
+        self.left = pivot.right
+        if pivot.right is not None:
+            pivot.right.parent = self
+        pivot.right = self
+
+    def rotate_left(self):
+        pivot = self.right
+        self.reconnect(pivot)
+        self.parent = pivot
+        self.right = pivot.left
+        if pivot.left is not None:
+            pivot.left.parent = self
+        pivot.left = self
     #
     # def insert_case1(self):
     #     if self.parent == None:
