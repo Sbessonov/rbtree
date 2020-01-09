@@ -116,3 +116,51 @@ class TestRBTree(unittest.TestCase):
         t = tree.RBTree()
         t.insert(1)
         self.assertFalse(t.delete(2))
+
+    def test_delete_wonder(self):
+        t = tree.RBTree()
+        random.seed(0)
+        vals = [0] * 100
+        for i in range(len(vals)):
+            k = random.randint(0, 99)
+            vals[k] = 1
+            t.insert(k)
+        for i in range(len(vals)):
+            if vals[i] == 1:
+                self.assertTrue(t.delete(i))
+
+    def test_delete_wonder2(self):
+        t = tree.RBTree()
+        random.seed(0)
+        vals = [0] * 100
+        for i in range(len(vals)):
+            k = random.randint(0, 99)
+            vals[k] = 1
+            t.insert(k)
+        for i in range(len(vals) - 1, -1, -1):
+            if vals[i] == 1:
+                self.assertTrue(t.delete(i))
+
+    def test_delete_many(self):
+        t = tree.RBTree()
+        for i in range(10):
+            t.insert(i)
+        for i in range(5, 10):
+            self.assertTrue(t.delete(i))
+        ct = grow()
+        ct.root.right = tree.Node(4, ct.root)
+        self.assertTrue(tree_compare(t.root, ct.root))
+
+    def test_delete_many2(self):
+        t = tree.RBTree()
+        for i in range(10):
+            t.insert(i)
+        for i in range(0, 6):
+            self.assertTrue(t.delete(i))
+
+    def test_delete_many3(self):
+        t = tree.RBTree()
+        for i in range(10):
+            t.insert(i)
+        self.assertTrue(t.delete(3))
+        self.assertTrue(t.delete(4))
