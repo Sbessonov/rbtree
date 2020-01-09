@@ -79,7 +79,7 @@ class Node:
         pivot.left = self
 
     def insert_case1(self):
-        if self.parent == None:
+        if self.parent is None:
             self.color = 0
         else:
             self.insert_case2()
@@ -90,7 +90,7 @@ class Node:
 
     def insert_case3(self):
         u = self.uncle()
-        if u != None and u.color == 1:
+        if u is not None and u.color == 1:
             self.parent.color, u.color = 0, 0
             g = self.grandparent()
             g.color = 1
@@ -182,10 +182,10 @@ class Node:
         if self.key == key:
             return self
         if self.key > key:
-            if self.left.key == None:
+            if self.left.key is None:
                 return None
             return self.left.find(key)
-        if self.right.key == None:
+        if self.right.key is None:
             return None
         return self.right.find(key)
 
@@ -193,13 +193,13 @@ class Node:
         if self.key == key:
             return False
         if self.key > key:
-            if self.left.key == None:
+            if self.left.key is None:
                 self.left = Node(key, self)
                 self.left.color = 1
                 self.left.insert_case2()
                 return True
             return self.left.insert(key)
-        if self.right.key == None:
+        if self.right.key is None:
             self.right = Node(key, self)
             self.right.color = 1
             self.right.insert_case2()
@@ -208,7 +208,7 @@ class Node:
 
     def delete_one_child(self):
         child = self.right
-        if self.right.key == None:
+        if self.right.key is None:
             child = self.left
         self.reconnect(child)
         if self.color == 0:
@@ -221,17 +221,17 @@ class Node:
     def delete(self, key):
         if self.key == key:
             ch = self
-            if self.left.key != None:
+            if self.left.key is not None:
                 ch = self.left
-                while ch.right.key != None:
+                while ch.right.key is not None:
                     ch = ch.right
                 self.key = ch.key
             ch.delete_one_child()
             return True
         if self.key > key:
-            if self.left.key == None:
+            if self.left.key is None:
                 return False
             return self.left.delete(key)
-        if self.right.key == None:
+        if self.right.key is None:
             return False
         return self.right.delete(key)
